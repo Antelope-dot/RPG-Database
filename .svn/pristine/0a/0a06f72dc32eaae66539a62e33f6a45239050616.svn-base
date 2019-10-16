@@ -1,0 +1,108 @@
+package fxRpg;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import fi.jyu.mit.fxgui.Dialogs;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import fi.jyu.mit.fxgui.ModalController;
+
+
+/**
+ * @author finsky
+ * @version Feb 7, 2019
+ *
+ */
+public class RpgGUIController implements Initializable {
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    @FXML
+    private Menu MenuFile;
+
+    @FXML
+    private Menu MenuEdit;
+
+    @FXML
+    private Menu MenuHelp;
+
+    @FXML
+    private Button buttonAddCha;
+
+    @FXML
+    private Button buttonRemoveCha;
+
+    @FXML
+    private Button buttonModStats;
+
+    @FXML
+    private Button buttonClearStats;
+
+    @FXML
+    private Button buttonAddItem;
+
+    @FXML
+    private Button buttonRmItem;
+
+    @FXML
+    private Button buttonModCha;
+
+    @FXML
+    private void HandleAddCharacter() {
+        ModalController.showModal(RpgGUIController.class.getResource("CharacterMuokkausGUIView.fxml"), "Character", null, "");    }
+
+    @FXML
+    private void HandleAddItem() {
+        Dialogs.showMessageDialog("Vielä ei osata lisaa itemeja");
+    }
+
+    @FXML
+    private void HandleClearStats() {
+        Dialogs.showMessageDialog("Vielä ei osata clear statteja");
+    }
+
+    @FXML
+    private void HandleEdit() {
+        Dialogs.showMessageDialog("Vielä ei osata handleEdit");
+    }
+
+    @FXML
+    private void HandleFIle() {
+        Dialogs.showMessageDialog("Vielä ei osata handleFile");
+    }
+
+    @FXML
+    private void HandleHelp() {
+        Dialogs.showMessageDialog("Vielä ei osata handle help");
+    }
+
+    @FXML
+    private void HandleModifyCharacter() {
+        ModalController.showModal(RpgGUIController.class.getResource("CharacterMuokkausGUIView.fxml"), "Character", null, "");    }
+
+    @FXML
+    private void HandleModifyStats() {
+        Dialogs.showMessageDialog("Vielä ei osata modifoida statteja");
+    }
+
+    @FXML
+    private void HandleRemoveCharacter() {
+        Dialogs.showMessageDialog("Vielä ei osata poistaa hahmoa");
+    }
+
+    @FXML
+    private void HandleRemoveItem() {
+        Dialogs.showMessageDialog("Vielä ei osata poistaa itemia");
+    }
+
+
+    
+    //=========================================================================================================
+}

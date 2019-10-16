@@ -1,0 +1,127 @@
+package rpg;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+/**
+ * Esine jota hahmo käyttää
+ * 
+ * @author Ilari Massa
+ * @version Mar 20, 2019
+ *
+ */
+public class Esine {
+    private int tunnusNro;
+    private int iid;
+    private String esine;
+    private String notes;
+     
+    private static int seuraavaNro = 1;
+    
+    /**
+     * Esineen muodostaja ilman paarametrejä
+     */
+    public Esine(){
+        // vielä ei mitään
+    }
+    
+    /**
+     * @param iid esineen id
+     */
+    public Esine(int iid) {
+        this.iid = iid;
+    }
+    
+    /**
+     * @return esineen nimi
+     */
+    public String getNimi() {
+        return esine;
+    }
+    
+    /**
+     * @return esineen tiedot
+     */
+    public String getNotes() {
+        return notes;
+    }
+    
+    /**
+     * @param nro Hahmon tunnusnro
+     */
+    public void taytaMiekka(int nro) {
+        tunnusNro = nro;
+        esine = "Miekka";
+        notes = "+1 attack damage";
+    }
+    
+    /**
+     * @param out tietovirta mihin tulostetaan
+     */
+    public void tulosta(PrintStream out) {
+        out.println(esine + " " + notes);
+    }
+    
+    /**
+     * @param os tietovirta mihin tulostetaan
+     */
+    public void tulosta(OutputStream os) {
+        tulosta(new PrintStream(os));
+    }
+    
+    /**
+     * Antaa esineelle rekisterinumeron
+     * @return esineen uusi tunnus
+     * @example
+     * <pre name ="test">
+     *  Esine miekka = new Esine();
+     *  miekka.getIDnumero() === 0;
+     *  miekka.rekisteroi();
+     *  Esine kirves = new Esine();
+     *  kirves.rekisteroi();
+     *  int n1 = miekka.getIDnumero();
+     *  int n2 = kirves.getIDnumero();
+     *  n1 === n2-1;
+     * </pre>
+     */
+    public int rekisteroi() {
+        iid = seuraavaNro;
+        seuraavaNro++;
+        return iid;
+    }
+    
+    /**
+     * @return esineen id numero
+     */
+    public int getIDnumero() {
+        return iid;
+    }
+    
+    /**
+     * @return hahmon id numero
+     */
+    public int getTunnusNro() {
+        return tunnusNro;
+    }
+    
+    /**
+     * @return esineen nimi
+     */
+    public String getEsine() {
+        return esine;
+    }
+    
+    /**
+     * @param args ei käytössä
+     */
+    public static void main(String[] args) {
+        Esine esine = new Esine();
+        esine.taytaMiekka(2);
+        esine.tulosta(System.out);
+    }
+    
+    
+    
+    
+    
+}

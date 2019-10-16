@@ -1,0 +1,138 @@
+package rpg;
+
+import java.util.List;
+/**
+ * Rpg-luokka joka huolehtii jäsenistöstä. Pääosin kaikki metodit
+ * 
+ * @author Ilari Massa
+ * @version Feb 28, 2019
+ *
+ */
+public class Rpg {
+    private final Hahmot hahmot = new Hahmot();
+    private final Esineet esine = new Esineet();
+    private final HahmojenEsineet esineet = new HahmojenEsineet();
+    
+    /**
+     * Palauttaa rpg:n jäsenmäärän
+     * @return hahmo määrä
+     */
+    public int getHahmoja() {
+        return hahmot.getLkm();
+    }
+    
+    /**
+     * Poistaa Rpg:sta ne joillo on nro. Kesken
+     * @param nro viitenumeor, jonka mukaan poistetaan
+     * @return montako hahmoa poistetaan
+     */
+    public int poista(@SuppressWarnings("unused") int nro) {
+        return 0;
+    }
+    
+    /**
+     * Lisää rpg:hen uuden jäsenen
+     * @param hahmo lisättävä hahmo
+     * @throws SailoException jos lisäystä ei voi tehdä
+     * @example
+     * <pre name = "test">
+     *  #THROWS SailoException
+     *  Rpg rpg = new rpg();
+     *  Hahmo aku1 = new Hahmo(), Hahmo aku2 = new Hahmo();
+     *  aku1.rekisteroi(), aku2.rekisteroi();
+     *  rpg.getHahmoja() === 0;
+     *  rpg.lisaa(aku1); rpg.getHahmoja() === 1;
+     *  rpg.lisaa(aku2); rpg.getHahmoja() === 2;
+     *  rpg.lisaa(aku1); rpg.getHahmoja() === 3;
+     *  rpg.annaHahmo(0) === aku1;
+     *  rpg.annaHahmo(1) === aku2;
+     *  rpg.annaHahmo(2) === aku1;
+     *  rpg.annaHahmo(1) == aku1 === false;
+     *  rpg.anna(3) === aku1; #THROWS IndexOutOfBoundsException
+     *  rpg.lisaa(aku1); rpg.getLkm() === 4;
+     *  rpg.lisaa(aku1); rpg.getLkm() === 5;
+     *  rpg.lisaa(aku1); #THROWS SailoException
+     * </pre>
+     */
+    public void lisaa(Hahmo hahmo) throws SailoException {
+        hahmot.lisaa(hahmo);
+    }
+    
+    /**
+     * @param esine1 Hahmone esine
+     * @throws SailoException jos lisäys ei onnistu
+     */
+    public void lisaa(HahmonEsine esine1) throws SailoException {
+        esineet.lisaa(esine1);
+    }
+    
+    /**
+     * @param hahmo hahmo jonka esineet otetaan
+     * @return hahmon esineet
+     * @throws SailoException jos 
+     */
+    public List<HahmonEsine> annaEsineet(Hahmo hahmo) throws SailoException {
+        return esineet.annaHahmonEsine(hahmo.getTunnusNro());
+    }
+    
+    /**
+     * Palautta i:n jäsenen
+     * @param i monesko jäsen palautetaan
+     * @return viite i:teen jäseneen
+     */
+    public Hahmo annaHahmo(int i)  {
+        return hahmot.anna(i);
+    }
+    
+    /**
+     * Lukee Rpg:een tiedot tiedostosta
+     * @param nimi jota käytetään lukemisessa
+     * @throws SailoException jos lukeminen ei onnistu
+     */
+    public void lueTiedostosta(String nimi) throws SailoException {
+        hahmot.lueTiedostosta(nimi);
+    }
+    
+    /**
+     * Tallettaa rpg:en tiedot tiedostoon
+     * @throws SailoException jos ei voi tallettaa
+     */
+    public void talleta() throws SailoException {
+        hahmot.talleta();
+        // TODO: talleta toinen vaikka toinen epäonnistuisi
+    }
+    
+    /**
+     * Testiohjelma Rpg:sta
+     * @param args ei käytössä
+     */
+    public static void main(String args[]) {
+        Rpg rpg = new Rpg();
+    
+        try {
+            
+            Hahmo aku1 = new Hahmo(), aku2 = new Hahmo();
+            aku1.rekisteroi();
+            aku1.taytaAkuAnkka();
+            aku2.rekisteroi();
+            aku2.taytaAkuAnkka();
+            
+            rpg.lisaa(aku1);
+            rpg.lisaa(aku2);
+            
+            System.out.println("========== Kerhon testi ===========");
+            
+            for (int i = 0; i < rpg.getHahmoja(); i++) {
+                Hahmo hahmo = rpg.annaHahmo(i);
+                System.out. println("Hahmo paikassa: " + i);
+                hahmo.tulosta(System.out);
+            }
+        } catch (SailoException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+    
+    
+
+}

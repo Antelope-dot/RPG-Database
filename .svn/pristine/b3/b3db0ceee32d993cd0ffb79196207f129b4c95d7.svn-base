@@ -1,0 +1,23 @@
+!https://tim.jyu.fi/view/kurssit/tie/ohj2/2019k/ht/ilahilma = Suunnitelma TIMissä
+
+kuvat/paaikkuna.png = ohjelman pääikkuna (käsin piirretty)
+kuvat/muokkaak.png  = kuva ohjelman muokkaa ikkunasta (kp)
+kuvat/deletek.png   = kuva kun painaa "delete character" (kp) 
+
+kuvat/Character.png = Character luonti (Scenebuilderilla tehty)
+kuvat/RpgGUI.png = ohjelman pääikkuna (sb)
+kuvat/delete.png = kuva kun painaa "delete" (sb)
+
+src/fxCharacterMuokkaus/charactermuokkaus.css = tyylitiedosto (ei muutoksia)
+src/fxCharacterMuokkaus/CharacterMuokkausGUIController.java = ohjain joka käsittelee käyttöliittymästä tulevat tapahtumat
+src/fxCharacterMuokkaus/CharacterMuokkausGUIView.fxml = Character luonnin varsinainen käyttöliittymä
+
+src/fxRpg/rpg.css = tyylitiedosto (ei muutoksia)
+src/fxRpg/RpgGUIController.java = ohjain joka käsitelee käyttöliittymän tulevat tapahtumat
+src/fxRpg/RpgGUIView.fxml = pääikkunan varsinainen käyttöliittymä
+src/fxRpg/RpgMain.java = ohjelman käynnistävä pääluokka
+
+build.fxbuild = Ant-skripti joka tekee .jar:in
+.project = Eclipsen projekti
+.classpath = Eclipsen luokkapolku
+

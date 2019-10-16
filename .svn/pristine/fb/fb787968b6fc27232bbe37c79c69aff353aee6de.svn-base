@@ -1,0 +1,157 @@
+package rpg;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Random;
+
+/**
+ * Rpg hahmo joka osaa mm. itsehuolehtia tunnusNro:sta
+ * 
+ * @author Ilari Massa
+ * @version Feb 20, 2019
+ *
+ */
+public class Hahmo {
+    private int tunnusNro;
+    private String name = "";
+    private Rotu race = new Rotu();
+    private String hahmonrotu = "";
+    private int age = 0;
+    private String origin = "";
+    private String allignment = "";
+    private String notes = "";
+    
+    private int str = 0;
+    private int dex = 0;
+    private int consti = 0;
+    private int luck = 0;
+    private int exp = 0;
+    private int wis = 0;
+    private int cha = 0;
+    private int inte = 0;
+    private int gold = 0;
+    private int lvl = 0;
+    
+    private static int seuraavaNro = 1;
+    
+    /**
+     * Hakee hahmon nimen
+     * @return hahmon nimi
+     * @example
+     * <pre name="test">
+     *  Hahmo aku = new Hahmo();
+     *  aku.taytaAkuAnkka();
+     *  aku.getNimi() =R= "Ankka Aku .*"
+     * </pre>
+     */
+    public String getNimi() {
+        return name;
+    }
+    
+    /**
+     * Apumetodi, jolla saadaan täytettyä testiarvot jäsenille
+     * @param ika apuikä joka annetaan henkilölle
+     */
+    public void taytaAkuAnkka(int ika) {
+        name = "Ankka Aku";
+        race.taytaRotu(tunnusNro);
+        hahmonrotu = race.getRotu();
+        age = ika;
+        origin = "Ankka linna";
+        allignment = "True Neutral";
+        notes = "Velkaa Roopelle";
+        
+        str = 5;
+        dex = 5;
+        consti = 2;
+        luck = 0;
+        exp = 12;
+        wis = 3;
+        cha = 4;
+        inte = 2;
+        gold = 3;
+        lvl = 4;
+    }
+    
+    /**
+     * Apumetodi jolla saadaan täytettyä testiarvot jäsenille
+     * Ikä arvotaan jotta kahdella jäsenellä ei olisi samoja tietoja
+     */
+    public void taytaAkuAnkka() {
+        Random rand = new Random();
+        int ika  = 0 + rand.nextInt(100);
+        taytaAkuAnkka(ika);
+    }
+    
+    
+    /**
+     * Tulostaa henkilön tiedot
+     * @param out tietovirta johon tulostetaan
+     */
+    public void tulosta(PrintStream out) {
+        out.println("Character name and id: " + name + " " + tunnusNro + "\n" + "Race: " + hahmonrotu + "\n" + "Age: " + age + "\n" + "Origin: " + origin 
+                + "\n" + "Allignment: " + allignment + "\n" + "Additional information: " + notes  );
+        
+        out.println( name + "'s stats are: " + "\n" + "Str: " +  + str + "\n" + "Dex: " + dex + "\n" + "Const: " + consti + "\n" + "Luck: " + luck + "\n" +
+        "Exp: " + exp + "\n" + "Wis: " + wis + "\n" + "Cha: " + cha + "\n" + "Int: " + inte + "\n" + "Gold: " + gold + "\n" + "Level: " + lvl);
+        
+    }
+    
+    /**
+     * Tulostetaan henkilön tiedot
+     * @param os tietovirta johon tulostetaan
+     */
+    public void tulosta(OutputStream os) {
+        tulosta(new PrintStream(os));
+    }
+    
+    /**
+     * Hakee tunnus numeron
+     * @return tunnusnumero
+     */
+    public int getTunnusNro() {
+        return tunnusNro;
+    }
+    
+    /**
+     * Antaa hahmolle rekisterinumeron
+     * @return hahmon uusi tunnus numero
+     * <prename ="test">
+     *  Hahmo aku1 = new Hahmo();
+     *  aku1.getTunnusNro() === 0;
+     *  aku1.rekisteroi();
+     *  Hahmo aku2 = new Hahmo();
+     *  aku2.rekisteroi();
+     *  int n1 = aku1.getTunnusNro();
+     *  int n2 = aku2.getTunnusNro();
+     *  n1 === n2-1;
+     * </pre>
+     */
+    public int rekisteroi() {
+        tunnusNro = seuraavaNro;
+        seuraavaNro++;
+        return tunnusNro;
+        
+    }
+    
+    /**
+     * testi ohjelma hahmolle
+     * @param args ei käytössä
+     */
+    public static void main(String args[]) {
+        Hahmo aku = new Hahmo(), aku2 = new Hahmo();
+        aku.rekisteroi();
+        aku2.rekisteroi();
+        
+        aku.tulosta(System.out);
+        aku.taytaAkuAnkka();
+        aku.tulosta(System.out);
+        
+        aku2.taytaAkuAnkka();
+        aku2.tulosta(System.out);
+
+        aku2.taytaAkuAnkka();
+        aku2.tulosta(System.out);
+        
+    }
+}
